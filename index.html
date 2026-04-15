@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Alex Chen - Full Stack Developer Portfolio">
+    <title>Alex Chen | Full Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0f172a',
+                        accent: '#3b82f6',
+                        surface: '#f8fafc',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'scale-in': 'scaleIn 0.4s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 md:py-6 bg-white/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <a href="#" class="font-display text-xl md:text-2xl font-bold text-primary tracking-tight btn-touch flex items-center">
+                    AC.
+                </a>
+                
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-sm text-slate-600 hover:text-primary transition-colors btn-touch flex items-center">About</a>
+                    <a href="#work" class="text-sm text-slate-600 hover:text-primary transition-colors btn-touch flex items-center">Work</a>
+                    <a href="#skills" class="text-sm text-slate-600 hover:text-primary transition-colors btn-touch flex items-center">Skills</a>
+                    <a href="#contact" class="text-sm font-medium bg-primary text-white px-5 py-2.5 rounded-full hover:bg-slate-800 transition-colors btn-touch flex items-center">
+                        Let's Talk
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden btn-touch p-2 rounded-lg hover:bg-slate-100 transition-colors" aria-label="Open menu">
+                    <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 z-40 bg-white md:hidden">
+        <div class="flex flex-col h-full">
+            <div class="flex justify-between items-center p-4 border-b border-slate-100">
+                <span class="font-display text-xl font-bold">Menu</span>
+                <button id="mobile-menu-close" class="btn-touch p-2 rounded-lg hover:bg-slate-100 transition-colors" aria-label="Close menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex flex-col p-6 gap-6">
+                <a href="#about" class="text-2xl font-display font-medium text-slate-800 mobile-link">About</a>
+                <a href="#work" class="text-2xl font-display font-medium text-slate-800 mobile-link">Work</a>
+                <a href="#skills" class="text-2xl font-display font-medium text-slate-800 mobile-link">Skills</a>
+                <a href="#contact" class="text-2xl font-display font-medium text-primary mobile-link">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute inset-0 -z-10 overflow-hidden">
+            <div class="absolute top-20 right-0 w-72 h-72 bg-blue-50 rounded-full blur-3xl opacity-60"></div>
+            <div class="absolute bottom-20 left-0 w-96 h-96 bg-slate-50 rounded-full blur-3xl opacity-60"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto w-full">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Content -->
+                <div class="order-2 lg:order-1 space-y-6 md:space-y-8">
+                    <div class="animate-on-scroll">
+                        <p class="text-slate-500 text-base md:text-lg mb-2">Hello, I'm Alex Chen</p>
+                        <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-primary">
+                            Building digital products that <span class="gradient-text">matter</span>
+                        </h1>
+                    </div>
+                    
+                    <p class="text-slate-600 text-base md:text-lg leading-relaxed max-w-lg animate-on-scroll delay-100">
+                        I'm a full-stack developer with 8+ years of experience creating 
+                        scalable web applications and intuitive user experiences.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3 md:gap-4 animate-on-scroll delay-200">
+                        <a href="#work" class="btn-touch px-6 md:px-8 py-3 md:py-4 bg-primary text-white rounded-full font-medium text-sm md:text-base hover:bg-slate-800 transition-colors inline-flex items-center gap-2 shadow-lg shadow-slate-200">
+                            View My Work
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                        <a href="#contact" class="btn-touch px-6 md:px-8 py-3 md:py-4 border-2 border-slate-200 text-primary rounded-full font-medium text-sm md:text-base hover:border-primary hover:bg-slate-50 transition-colors">
+                            Get in Touch
+                        </a>
+                    </div>
+
+                    <div class="flex items-center gap-4 md:gap-6 pt-4 md:pt-8 animate-on-scroll delay-300">
+                        <a href="#" class="btn-touch text-slate-400 hover:text-primary transition-colors p-2" aria-label="GitHub">
+                            <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                        <a href="#" class="btn-touch text-slate-400 hover:text-primary transition-colors p-2" aria-label="LinkedIn">
+                            <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a href="#" class="btn-touch text-slate-400 hover:text-primary transition-colors p-2" aria-label="Twitter">
+                            <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 00-2.163-2.723c-.951-.505-2.017-.804-3.138-.804-2.384 0-4.313 1.934-4.313 4.313 0 .338.038.667.113.982-3.586-.18-6.789-1.932-8.93-4.592a4.314 4.314 0 00-.584 2.167c0 1.502.764 2.825 1.925 3.601a4.93 4.93 0 01-2.224-.616v.062c0 2.098 1.492 3.846 3.473 4.239a4.963 4.963 0 01-2.23.085 4.316 4.316 0 004.028 2.992 8.658 8.658 0 01-5.381 1.854c-.349 0-.694-.02-1.032-.059a12.216 12.216 0 006.635 1.947c7.962 0 12.314-6.594 12.314-12.314 0-.187-.004-.374-.012-.56a8.81 8.81 0 002.162-2.246z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Profile Image -->
+               <div class="order-1 lg:order-2 flex justify-center animate-on-scroll delay-200">
+                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
+                        <!-- Decorative elements -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-100 to-slate-100 rounded-3xl transform rotate-3 scale-105"></div>
+                        <div class="absolute inset-0 bg-white rounded-3xl shadow-xl overflow-hidden">
+                            <img src="h469401160_18377484817110386_988037672879522230_n.jpg" alt="Alex Chen" class="w-full h-full object-cover rounded-3xl grayscale transition-all duration-500 hover:grayscale-0">
+                        </div>
+                        
+                        <!-- Floating badge -->
+                        <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white px-4 py-2 md:px-6 md:py-3 rounded-full shadow-lg border border-slate-100 animate-on-scroll delay-300">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                <span class="text-sm font-medium text-slate-700">Available for work</span>
+                            </div>
+                        </div>
+
+                        <!-- Stats badge -->
+                        <div class="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-primary text-white w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center shadow-lg animate-on-scroll delay-300">
+                            <div class="text-center">
+                                <span class="block font-display text-xl md:text-2xl font-bold">8+</span>
+                                <span class="text-[10px] md:text-xs opacity-80">Years</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-surface">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+                <div class="animate-on-scroll">
+                    <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6">About Me</h2>
+                    <div class="space-y-4 text-slate-600 leading-relaxed text-base md:text-lg">
+                        <p>
+                            I'm a passionate software engineer based in San Francisco, specializing in building 
+                            exceptional digital experiences. With a strong foundation in both frontend and backend 
+                            development, I bridge the gap between design and engineering.
+                        </p>
+                        <p>
+                            Currently, I'm focused on building accessible, human-centered products at TechCorp. 
+                            I believe in writing clean, maintainable code and creating intuitive user interfaces 
+                            that solve real problems.
+                        </p>
+                        <p>
+                            When I'm not coding, you'll find me exploring new technologies, contributing to 
+                            open-source projects, or enjoying a good cup of coffee while reading about system design.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-8 flex flex-wrap gap-2 md:gap-3">
+                        <span class="px-3 py-1.5 md:px-4 md:py-2 bg-white border border-slate-200 rounded-full text-sm text-slate-600 hover:border-primary hover:text-primary transition-colors cursor-default">Problem Solver</span>
+                        <span class="px-3 py-1.5 md:px-4 md:py-2 bg-white border border-slate-200 rounded-full text-sm text-slate-600 hover:border-primary hover:text-primary transition-colors cursor-default">Team Player</span>
+                        <span class="px-3 py-1.5 md:px-4 md:py-2 bg-white border border-slate-200 rounded-full text-sm text-slate-600 hover:border-primary hover:text-primary transition-colors cursor-default">Detail Oriented</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 md:gap-4 animate-on-scroll delay-100">
+                    <div class="bg-white p-4 md:p-6 rounded-2xl card-hover border border-slate-100">
+                        <p class="font-display text-3xl md:text-4xl font-bold text-primary mb-1">8+</p>
+                        <p class="text-slate-500 text-sm">Years Experience</p>
+                    </div>
+                    <div class="bg-white p-4 md:p-6 rounded-2xl card-hover border border-slate-100 mt-6 md:mt-8">
+                        <p class="font-display text-3xl md:text-4xl font-bold text-primary mb-1">50+</p>
+                        <p class="text-slate-500 text-sm">Projects Completed</p>
+                    </div>
+                    <div class="bg-white p-4 md:p-6 rounded-2xl card-hover border border-slate-100">
+                        <p class="font-display text-3xl md:text-4xl font-bold text-primary mb-1">30+</p>
+                        <p class="text-slate-500 text-sm">Happy Clients</p>
+                    </div>
+                    <div class="bg-white p-4 md:p-6 rounded-2xl card-hover border border-slate-100 mt-6 md:mt-8">
+                        <p class="font-display text-3xl md:text-4xl font-bold text-primary mb-1">99%</p>
+                        <p class="text-slate-500 text-sm">Satisfaction Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-4 animate-on-scroll">
+                <div>
+                    <p class="text-accent font-medium text-sm mb-2">Portfolio</p>
+                    <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary">Selected Work</h2>
+                </div>
+                <a href="#" class="btn-touch text-primary font-medium inline-flex items-center gap-2 hover:text-accent transition-colors group">
+                    View All Projects
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+                <!-- Project 1 -->
+                <article class="group animate-on-scroll">
+                    <div class="project-card relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-slate-100 cursor-pointer" onclick="window.location.href='#'">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+                            <span class="text-5xl md:text-6xl grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110">🏢</span>
+                        </div>
+                        <div class="project-overlay absolute inset-0 bg-slate-900/80 flex items-center justify-center">
+                            <div class="text-center text-white p-4">
+                                <p class="text-sm mb-3 opacity-90">View Project</p>
+                                <div class="w-12 h-12 mx-auto rounded-full border-2 border-white/30 flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="font-display text-xl md:text-2xl font-bold text-primary group-hover:text-accent transition-colors">Enterprise Dashboard</h3>
+                        <p class="text-slate-500 text-sm md:text-base">Real-time analytics platform with AI-powered insights</p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                            <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs text-slate-600">React</span>
+                            <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs text-slate-600">Node.js</span>
+                            <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs text-slate-600">AWS</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="group animate-on-scroll delay-100">
+                    <div class="project-card relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-slate-100 cursor-pointer" onclick="window.location.href='#'">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-100 flex items-center justify-center">
+                            <span class="text-5xl md:text-6xl grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110">💳</span>
+                        </div>
+                        <div class="project-overlay absolute inset-0 bg-slate-900/80 flex items-center justify-center">
+                            <div class="text-center text-white p-4">
+                                <p class="text-sm mb-3 opacity-90">View Project</p>
+                                <div class="w-12 h-12 mx-auto rounded-full border-2 border-white/30 flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="font-display text-xl md:text-2xl font-bold text-primary group-hover:text-accent transition-colors">Fintech Platform</h3>
+                        <p class="text-slate-500 text-sm md:text-base">Secure payment processing handling $10M+ daily</p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                            <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs text-slate-600">Next.js</span>
+                            <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs text-slate-600">Python</span>
+                            <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs text-slate-600">PostgreSQL</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="group animate-on-scroll">
+                    <div class="project-card relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-slate-100 cursor-pointer" onclick="window.location.href='#'">
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-50 to-teal-100 flex items-center justify-center">
+                            <span class="text-5xl md:text-6xl grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110">🤖</span>
+                        </div>
+                        <div class="project-overlay absolute inset-0 bg-slate-900/80 flex items-center justify-center">
+                            <div class="text-center text-white p-4">
+                                <p class="text-sm mb-3 opacity-90">View Project</p>
+                                <div class="w-12 h-12 mx-auto rounded-full border-2 border-white/30 flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="font-display text-xl md:text-2xl font-bold text-primary group-hover:text-accent transition-colors">AI Assistant</h3>
+                        <p class="text-slate-500 text-sm md:text-base">Natural language processing for enterprise support</p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                            <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs text-slate-600">Python</span>
+                            <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs text-slate-600">OpenAI</span>
+                            <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs text-slate-600">FastAPI</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4 -->
+                <article class="group animate-on-scroll delay-100">
+                    <div class="project-card relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-slate-100 cursor-pointer" onclick="window.location.href='#'">
+                        <div class="absolute inset-0 bg-gradient-to-br from-orange-50 to-red-100 flex items-center justify-center">
+                            <span class="text-5xl md:text-6xl grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110">🏥</span>
+                        </div>
+                        <div class="project-overlay absolute inset-0 bg-slate-900/80 flex items-center justify-center">
+                            <div class="text-center text-white p-4">
+                                <p class="text-sm mb-3 opacity-90">View Project</p>
+                                <div class="w-12 h-12 mx-auto rounded-full border-2 border-white/30 flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="font-display text-xl md:text-2xl font-bold text-primary group-hover:text-accent transition-colors">Healthcare System</h3>
+                        <p class="text-slate-500 text-sm md:text-base">HIPAA-compliant patient management platform</p>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                            <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs text-slate-600">React</span>
+                            <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs text-slate-600">Django</span>
+                            <span class="px-2.5 py-1 bg-slate-100 rounded-md text-xs text-slate-600">AWS</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 md:py-24 bg-surface">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-16 animate-on-scroll">
+                <p class="text-accent font-medium text-sm mb-2">Expertise</p>
+                <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary">Technical Skills</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <!-- Frontend -->
+                <div class="bg-white p-6 md:p-8 rounded-2xl card-hover border border-slate-100 animate-on-scroll">
+                    <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-4 md:mb-6">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg md:text-xl font-bold text-primary mb-3 md:mb-4">Frontend</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">React</span>
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">Next.js</span>
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">TypeScript</span>
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">Tailwind CSS</span>
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">Vue.js</span>
+                    </div>
+                </div>
+
+                <!-- Backend -->
+                <div class="bg-white p-6 md:p-8 rounded-2xl card-hover border border-slate-100 animate-on-scroll delay-100">
+                    <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-4 md:mb-6">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg md:text-xl font-bold text-primary mb-3 md:mb-4">Backend</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">Node.js</span>
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">Python</span>
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">PostgreSQL</span>
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">MongoDB</span>
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">GraphQL</span>
+                    </div>
+                </div>
+
+                <!-- DevOps -->
+                <div class="bg-white p-6 md:p-8 rounded-2xl card-hover border border-slate-100 animate-on-scroll delay-200">
+                    <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-4 md:mb-6">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-lg md:text-xl font-bold text-primary mb-3 md:mb-4">Cloud & DevOps</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">AWS</span>
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">Docker</span>
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">Kubernetes</span>
+                        <span class="px-3 py-1.5 bg-slate-50 rounded-lg text-sm text-slate-600">CI/CD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="py-16 md:py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-16 animate-on-scroll">
+                <p class="text-accent font-medium text-sm mb-2">Background</p>
+                <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary">Experience</h2>
+            </div>
+
+            <div class="space-y-8 md:space-y-12 animate-on-scroll">
+                <!-- Experience 1 -->
+                <div class="relative pl-8 md:pl-0">
+                    <div class="md:grid md:grid-cols-12 md:gap-8 items-start">
+                        <div class="md:col-span-3 mb-2 md:mb-0">
+                            <span class="text-accent font-medium text-sm">2022 - Present</span>
+                        </div>
+                        <div class="md:col-span-9">
+                            <div class="relative md:pl-8 md:border-l-2 md:border-slate-200 md:pb-12 last:pb-0">
+                                <div class="hidden md:block absolute -left-[9px] top-1 w-4 h-4 bg-accent rounded-full border-4 border-white"></div>
+                                <h3 class="font-display text-lg md:text-xl font-bold text-primary mb-1">Senior Full Stack Engineer</h3>
+                                <p class="text-slate-500 font-medium mb-3">TechCorp Inc.</p>
+                                <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+                                    Leading architecture decisions and mentoring a team of 5 developers. 
+                                    Delivered scalable solutions serving 1M+ users with 99.9% uptime.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="relative pl-8 md:pl-0">
+                    <div class="md:grid md:grid-cols-12 md:gap-8 items-start">
+                        <div class="md:col-span-3 mb-2 md:mb-0">
+                            <span class="text-accent font-medium text-sm">2020 - 2022</span>
+                        </div>
+                        <div class="md:col-span-9">
+                            <div class="relative md:pl-8 md:border-l-2 md:border-slate-200 md:pb-12 last:pb-0">
+                                <div class="hidden md:block absolute -left-[9px] top-1 w-4 h-4 bg-slate-300 rounded-full border-4 border-white"></div>
+                                <h3 class="font-display text-lg md:text-xl font-bold text-primary mb-1">Full Stack Developer</h3>
+                                <p class="text-slate-500 font-medium mb-3">Digital Solutions Ltd</p>
+                                <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+                                    Developed 15+ client projects from concept to deployment. 
+                                    Implemented CI/CD pipelines reducing deployment time by 60%.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 3 -->
+                <div class="relative pl-8 md:pl-0">
+                    <div class="md:grid md:grid-cols-12 md:gap-8 items-start">
+                        <div class="md:col-span-3 mb-2 md:mb-0">
+                            <span class="text-accent font-medium text-sm">2018 - 2020</span>
+                        </div>
+                        <div class="md:col-span-9">
+                            <div class="relative md:pl-8">
+                                <div class="hidden md:block absolute -left-[9px] top-1 w-4 h-4 bg-slate-300 rounded-full border-4 border-white"></div>
+                                <h3 class="font-display text-lg md:text-xl font-bold text-primary mb-1">Junior Developer</h3>
+                                <p class="text-slate-500 font-medium mb-3">StartUp Hub</p>
+                                <p class="text-slate-600 leading-relaxed text-sm md:text-base">
+                                    Built responsive web applications and integrated third-party APIs. 
+                                    Collaborated with design teams to implement pixel-perfect interfaces.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-surface">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-16 animate-on-scroll">
+                <p class="text-accent font-medium text-sm mb-2">Get in Touch</p>
+                <h2 class="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">Let's Work Together</h2>
+                <p class="text-slate-600 max-w-lg mx-auto">Have a project in mind? I'd love to hear about it. Send me a message and let's create something amazing.</p>
+            </div>
+
+            <div class="bg-white p-6 md:p-10 lg:p-12 rounded-2xl md:rounded-3xl shadow-sm border border-slate-100 animate-on-scroll">
+                <form class="space-y-4 md:space-y-6" id="contact-form">
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-slate-700">Name</label>
+                            <input type="text" class="input-field w-full px-4 py-3 rounded-xl border border-slate-200 text-primary placeholder-slate-400" placeholder="John Doe" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-slate-700">Email</label>
+                            <input type="email" class="input-field w-full px-4 py-3 rounded-xl border border-slate-200 text-primary placeholder-slate-400" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-slate-700">Subject</label>
+                        <input type="text" class="input-field w-full px-4 py-3 rounded-xl border border-slate-200 text-primary placeholder-slate-400" placeholder="Project Inquiry" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-slate-700">Message</label>
+                        <textarea rows="4" class="input-field w-full px-4 py-3 rounded-xl border border-slate-200 text-primary placeholder-slate-400 resize-none" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full btn-touch py-3.5 md:py-4 bg-primary text-white rounded-xl font-medium hover:bg-slate-800 transition-colors shadow-lg shadow-slate-200">
+                        Send Message
+                    </button>
+                </form>
+
+                <div class="mt-8 md:mt-12 pt-8 border-t border-slate-100 grid sm:grid-cols-3 gap-6 md:gap-8 text-center">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 mx-auto bg-blue-50 rounded-xl flex items-center justify-center">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-slate-600 text-sm">alex@example.com</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 mx-auto bg-green-50 rounded-xl flex items-center justify-center">
+                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-slate-600 text-sm">+1 (555) 123-4567</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 mx-auto bg-purple-50 rounded-xl flex items-center justify-center">
+                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-slate-600 text-sm">San Francisco, CA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 md:py-12 bg-white border-t border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <span class="font-display text-lg font-bold text-primary">AC.</span>
+                    <span class="text-slate-500 text-sm">© 2025 Alex Chen</span>
+                </div>
+                
+                <div class="flex items-center gap-4 md:gap-6">
+                    <a href="#" class="btn-touch text-slate-400 hover:text-primary transition-colors p-2" aria-label="GitHub">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="#" class="btn-touch text-slate-400 hover:text-primary transition-colors p-2" aria-label="LinkedIn">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="#" class="btn-touch text-slate-400 hover:text-primary transition-colors p-2" aria-label="Twitter">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 00-2.163-2.723c-.951-.505-2.017-.804-3.138-.804-2.384 0-4.313 1.934-4.313 4.313 0 .338.038.667.113.982-3.586-.18-6.789-1.932-8.93-4.592a4.314 4.314 0 00-.584 2.167c0 1.502.764 2.825 1.925 3.601a4.93 4.93 0 01-2.224-.616v.062c0 2.098 1.492 3.846 3.473 4.239a4.963 4.963 0 01-2.23.085 4.316 4.316 0 004.028 2.992 8.658 8.658 0 01-5.381 1.854c-.349 0-.694-.02-1.032-.059a12.216 12.216 0 006.635 1.947c7.962 0 12.314-6.594 12.314-12.314 0-.187-.004-.374-.012-.56a8.81 8.81 0 002.162-2.246z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Register GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 50) {
+                navbar.classList.add('nav-blur', 'shadow-sm');
+            } else {
+                navbar.classList.remove('nav-blur', 'shadow-sm');
+            }
+            
+            lastScroll = currentScroll;
+        }, { passive: true });
+
+        // Scroll reveal animation using IntersectionObserver
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector('button');
+            const originalText = btn.textContent;
+            
+            btn.textContent = 'Message Sent!';
+            btn.classList.add('bg-green-600');
+            btn.classList.remove('bg-primary');
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.classList.remove('bg-green-600');
+                btn.classList.add('bg-primary');
+                contactForm.reset();
+            }, 3000);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // GSAP animations for enhanced effects
+        if (window.innerWidth > 768) {
+            gsap.utils.toArray('.animate-on-scroll').forEach((element, i) => {
+                gsap.fromTo(element, 
+                    { opacity: 0, y: 24 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse"
+                        },
+                        delay: i % 3 * 0.1
+                    }
+                );
+            });
+        }
+a
+        // Touch device detection for hover effects
+        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+        if (isTouchDevice) {
+            document.body.classList.add('touch-device');
+        }
+
+        // Performance: Disable complex animations on low-power devices
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                el.classList.add('visible');
+            });
+        }
+    </script>
+</body>
+</html>
